@@ -1,7 +1,7 @@
 ---
 name: "Ends At"
 guid: "78c8a3ea-5b5e-4ba5-8f7c-5e951b48b0ba"
-version: "1.0.2.0"
+version: "1.1.0.0"
 targetAbi: "12.1.0.0"
 framework: "net10.0"
 overview: "Find a movie or show episode that finishes before you need to leave."
@@ -13,4 +13,4 @@ owner: "Joshsnook-05"
 artifacts:
 - "Jellyfin.Plugin.EndsAt.dll"
 changelog: >
-  Keeps Ends @ badges on every media-card page while restricting filtering to library browse pages.
+  Adds a release-history dropdown to the README and packages the stable 1.1.0 release.

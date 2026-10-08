@@ -1,5 +1,15 @@
 # Ends At for Jellyfin
 
+<details>
+<summary><strong>Recent changes</strong></summary>
+
+- **1.1.0** — Added this release history to make updates easier to review.
+- **1.0.2** — Keeps `Ends @` badges on every media-card page while limiting the interactive filter to library browse and search pages.
+- **1.0.1** — Limits the interactive filter to library browse and search pages.
+- **1.0.0** — First stable release; places the in-poster `Ends @` badge at bottom-left.
+
+</details>
+
 **Ends At** helps pick something you can finish before a deadline. In Jellyfin Web it adds:
 
 - an **Ends by** time filter, which hides titles that would finish after the selected local time;
@@ -34,7 +44,7 @@ The catalog always points to the tested release package, so it is the preferred 
 
 ### Direct download
 
-Alternatively, download [`Jellyfin.Plugin.EndsAt_1.0.2.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.0.2/Jellyfin.Plugin.EndsAt_1.0.2.0.zip) from the [v1.0.2 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v1.0.2), then install it through Jellyfin’s plugin dashboard.
+Alternatively, download [`Jellyfin.Plugin.EndsAt_1.1.0.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.1.0/Jellyfin.Plugin.EndsAt_1.1.0.0.zip) from the [v1.1.0 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v1.1.0), then install it through Jellyfin’s plugin dashboard.
 
 ## Setup
 
@@ -60,7 +70,7 @@ Ends At uses Jellyfin's authenticated item API, not filesystem paths or local-me
 
 ## Notes
 
-This is the first stable release series, `1.0.2`. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
+This is stable release `1.1.0`. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
 
 ## Development
 
