@@ -1,0 +1,16 @@
+---
+name: "Ends At"
+guid: "78c8a3ea-5b5e-4ba5-8f7c-5e951b48b0ba"
+version: "0.1.0.0"
+targetAbi: "12.1.0.0"
+framework: "net10.0"
+overview: "Find a movie or show episode that finishes before you need to leave."
+description: >
+  Adds an Ends by filter and optional Ends @ time badges to Jellyfin Web through
+  the JavaScript Injector companion. Series use the median duration of available episodes.
+category: "General"
+owner: "Joshsnook-05"
+artifacts:
+- "Jellyfin.Plugin.EndsAt.dll"
+changelog: >
+  Initial pre-v1 release.

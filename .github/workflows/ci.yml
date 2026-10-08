@@ -1,0 +1,38 @@
+name: Build and release
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [master]
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet build Jellyfin.Plugin.EndsAt.slnx --configuration Release
+      - name: Package plugin
+        run: |
+          mkdir package
+          cp Jellyfin.Plugin.EndsAt/bin/Release/net10.0/Jellyfin.Plugin.EndsAt.dll package/
+          cp packaging/meta.json package/
+          cd package && zip -r ../Jellyfin.Plugin.EndsAt_0.1.0.0.zip .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Jellyfin.Plugin.EndsAt_0.1.0.0
+          path: Jellyfin.Plugin.EndsAt_0.1.0.0.zip
+      - name: Upload GitHub release asset
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          prerelease: true
+          files: Jellyfin.Plugin.EndsAt_0.1.0.0.zip

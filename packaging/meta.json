@@ -1,0 +1,15 @@
+{
+  "category": "General",
+  "changelog": "Initial pre-v1 release.",
+  "description": "Find movies and TV episodes that finish before your deadline.",
+  "guid": "78c8a3ea-5b5e-4ba5-8f7c-5e951b48b0ba",
+  "name": "Ends At",
+  "overview": "Adds Ends by filtering and optional Ends @ poster badges to Jellyfin Web.",
+  "owner": "Josh Snook",
+  "targetAbi": "12.1.0.0",
+  "timestamp": "2026-10-08T00:00:00.0000000Z",
+  "version": "0.1.0.0",
+  "status": "Active",
+  "autoUpdate": true,
+  "assemblies": ["Jellyfin.Plugin.EndsAt.dll"]
+}
