@@ -10,7 +10,7 @@
     var busy = false;
     var style = document.createElement('style');
     style.textContent = [
-        '.card .ends-at-badge{position:absolute;z-index:30;top:.55rem;right:.55rem;display:inline-flex;align-items:center;max-width:calc(100% - 1.1rem);padding:.3rem .55rem;border:1px solid rgba(255,255,255,.22);border-radius:999px;color:#fff;background:rgba(9,20,31,.88);box-shadow:0 2px 8px rgba(0,0,0,.38);font-size:.72rem;font-weight:700;letter-spacing:.06em;line-height:1;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}',
+        '.card .ends-at-badge{position:absolute;z-index:30;bottom:.55rem;left:.55rem;display:inline-flex;align-items:center;max-width:calc(100% - 1.1rem);padding:.3rem .55rem;border:1px solid rgba(255,255,255,.22);border-radius:999px;color:#fff;background:rgba(9,20,31,.88);box-shadow:0 2px 8px rgba(0,0,0,.38);font-size:.72rem;font-weight:700;letter-spacing:.06em;line-height:1;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}',
         '.ends-at-tools{position:fixed;right:1em;bottom:1em;z-index:1000;display:flex;align-items:center;gap:.45em;background:#202020eF;color:#fff;padding:.65em;border-radius:.5em;box-shadow:0 2px 12px #0008;font-size:.9em}',
         '.ends-at-tools input{color:#fff;background:#333;border:1px solid #666;border-radius:.2em;padding:.25em}',
         '.ends-at-tools button{color:#fff;background:#008cba;border:0;border-radius:.2em;padding:.35em .55em;cursor:pointer}',
