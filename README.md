@@ -13,9 +13,8 @@ It is designed to work with the [Remote Library plugin](https://github.com/Joshs
 ## Requirements
 
 - Jellyfin Server **12.1.x**
-- [JavaScript Injector](https://github.com/n00bcodr/Jellyfin-JavaScript-Injector) for the Jellyfin Web integration
 
-The server plugin remains safe to install without JavaScript Injector; it simply does not alter the web client. When JavaScript Injector is present, Ends At registers its companion automatically at server startup. Refresh Jellyfin Web after installing or changing the plugin.
+Ends At injects its small, bundled web companion directly into Jellyfin Web at request time. It does not require JavaScript Injector, File Transformation, or edits to Jellyfin's files on disk.
 
 ## Installation
 
@@ -35,12 +34,12 @@ The catalog always points to the tested release package, so it is the preferred 
 
 ### Direct download
 
-Alternatively, download [`Jellyfin.Plugin.EndsAt_0.1.0.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v0.1.0/Jellyfin.Plugin.EndsAt_0.1.0.0.zip) from the [v0.1.0 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v0.1.0), then install it through Jellyfin’s plugin dashboard.
+Alternatively, download [`Jellyfin.Plugin.EndsAt_0.1.1.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v0.1.1/Jellyfin.Plugin.EndsAt_0.1.1.0.zip) from the [v0.1.1 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v0.1.1), then install it through Jellyfin’s plugin dashboard.
 
 ## Setup
 
-1. Install **JavaScript Injector** for Jellyfin 12. It is required because Jellyfin Web does not provide a native grid-extension API.
-2. Install Ends At and restart Jellyfin. The plugin automatically registers its web companion with JavaScript Injector.
+1. Install Ends At and restart Jellyfin.
+2. Hard-refresh Jellyfin Web. The bundled companion loads automatically; no other plugin is required.
 3. In a movie or series grid, use the floating **Ends by** time input. Titles that would end after that local time are hidden.
 4. Use **Clear** to remove the current filter. The page immediately recalculates the `Ends @` badges from the current time.
 
@@ -53,7 +52,7 @@ Open **Dashboard → Plugins → Ends At** to configure server defaults:
 | Show “Ends @” badges | On | Shows the calculated local end time at the bottom of supported posters. Each browser can override this with the **Badges** checkbox. |
 | Include TV series | On | Calculates a series estimate from the median runtime of its available episodes. |
 
-Changes take effect after a Jellyfin restart and browser refresh because JavaScript Injector loads the companion at page start.
+Hard-refresh Jellyfin Web after changing settings so the browser receives the refreshed bundled companion.
 
 ## Remote Library compatibility
 
@@ -61,7 +60,7 @@ Ends At uses Jellyfin's authenticated item API, not filesystem paths or local-me
 
 ## Notes
 
-This is `0.1.0`, an intentionally pre-v1 release. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
+This is `0.1.1`, an intentionally pre-v1 release. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
 
 ## Development
 
