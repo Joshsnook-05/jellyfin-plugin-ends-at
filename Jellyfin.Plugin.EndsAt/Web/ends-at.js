@@ -69,10 +69,9 @@
         return /(?:movies|tv|library|folder|search)(?:\.html)?(?:[?&/]|$)/.test(route);
     }
 
-    function clearPageEnhancements() {
+    function clearFilterControls() {
         var tools = document.querySelector('#ends-at-tools');
         if (tools) tools.remove();
-        document.querySelectorAll('.ends-at-badge').forEach(function (badge) { badge.remove(); });
         document.querySelectorAll('.ends-at-hidden').forEach(function (card) { card.classList.remove('ends-at-hidden'); });
     }
 
@@ -122,14 +121,18 @@
     }
 
     function refresh() {
-        if (!isLibraryBrowsePage()) {
-            clearPageEnhancements();
-            return;
-        }
         if (busy || !cards().length) return;
+        var showFilter = isLibraryBrowsePage();
+        if (!showFilter) clearFilterControls();
         busy = true;
         var ids = cards().map(function (card) { return card.dataset.id; }).filter(Boolean);
-        loadMissing(ids).then(function () { ensureTools(); applyBadges(); applyFilter(); }).finally(function () { busy = false; });
+        loadMissing(ids).then(function () {
+            applyBadges();
+            if (showFilter) {
+                ensureTools();
+                applyFilter();
+            }
+        }).finally(function () { busy = false; });
     }
 
     new MutationObserver(refresh).observe(document.documentElement, { childList: true, subtree: true });

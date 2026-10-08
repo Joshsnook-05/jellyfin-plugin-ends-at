@@ -34,7 +34,7 @@ The catalog always points to the tested release package, so it is the preferred 
 
 ### Direct download
 
-Alternatively, download [`Jellyfin.Plugin.EndsAt_1.0.1.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.0.1/Jellyfin.Plugin.EndsAt_1.0.1.0.zip) from the [v1.0.1 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v1.0.1), then install it through Jellyfin’s plugin dashboard.
+Alternatively, download [`Jellyfin.Plugin.EndsAt_1.0.2.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.0.2/Jellyfin.Plugin.EndsAt_1.0.2.0.zip) from the [v1.0.2 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v1.0.2), then install it through Jellyfin’s plugin dashboard.
 
 ## Setup
 
@@ -60,7 +60,7 @@ Ends At uses Jellyfin's authenticated item API, not filesystem paths or local-me
 
 ## Notes
 
-This is the first stable release series, `1.0.1`. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
+This is the first stable release series, `1.0.2`. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
 
 ## Development
 
