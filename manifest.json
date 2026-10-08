@@ -8,11 +8,11 @@
     "category": "General",
     "versions": [
       {
-        "changelog": "Adds a release-history dropdown to the README and packages the stable 1.1.0 release.",
+        "changelog": "Adds remaining-time badges, a Rewatch action, and configurable badge clock formats.",
         "targetAbi": "12.1.0.0",
-        "version": "1.1.0.0",
-        "sourceUrl": "https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.1.0/Jellyfin.Plugin.EndsAt_1.1.0.0.zip",
-        "checksum": "A1B497EF165382205A5C18A6265E2A8F",
+        "version": "1.2.0.0",
+        "sourceUrl": "https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.2.0/Jellyfin.Plugin.EndsAt_1.2.0.0.zip",
+        "checksum": "2a8ee76649d09c4d6ab3bf8772af1970",
         "timestamp": "2026-10-08T00:00:00"
       }
     ]

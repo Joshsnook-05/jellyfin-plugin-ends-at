@@ -14,6 +14,7 @@ internal static class WebCompanion
         return reader.ReadToEnd()
             .Replace("__SHOW_POSTER_BADGES__", plugin.Configuration.ShowPosterBadges.ToString().ToLowerInvariant(), StringComparison.Ordinal)
             .Replace("__INCLUDE_SERIES__", plugin.Configuration.IncludeSeries.ToString().ToLowerInvariant(), StringComparison.Ordinal)
+            .Replace("__TIME_FORMAT__", plugin.Configuration.TimeFormat.ToString(), StringComparison.Ordinal)
             .Replace("__PLUGIN_VERSION__", plugin.Version.ToString(), StringComparison.Ordinal);
     }
 }

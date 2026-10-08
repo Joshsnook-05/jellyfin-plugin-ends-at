@@ -3,6 +3,7 @@
 <details>
 <summary><strong>Recent changes</strong></summary>
 
+- **1.2.0** — Adds remaining-time badges, per-user Rewatch controls, and 12/24-hour badge clock options.
 - **1.1.0** — Added this release history to make updates easier to review.
 - **1.0.2** — Keeps `Ends @` badges on every media-card page while limiting the interactive filter to library browse and search pages.
 - **1.0.1** — Limits the interactive filter to library browse and search pages.
@@ -15,6 +16,8 @@
 - an **Ends by** time filter, which hides titles that would finish after the selected local time;
 - an optional **Ends @ HH:MM** badge inside movie and series posters; and
 - the same treatment for series, using the median runtime of their available episodes.
+
+When a movie or episode is partly watched, Ends At uses the current user's remaining runtime and adds a concise “time left” detail. Item detail pages include a **Rewatch** action to reset that user's progress.
 
 The badge is enabled by default and can be disabled globally in the plugin settings or per browser from the floating control.
 
@@ -44,7 +47,7 @@ The catalog always points to the tested release package, so it is the preferred 
 
 ### Direct download
 
-Alternatively, download [`Jellyfin.Plugin.EndsAt_1.1.0.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.1.0/Jellyfin.Plugin.EndsAt_1.1.0.0.zip) from the [v1.1.0 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v1.1.0), then install it through Jellyfin’s plugin dashboard.
+Alternatively, download [`Jellyfin.Plugin.EndsAt_1.2.0.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.2.0/Jellyfin.Plugin.EndsAt_1.2.0.0.zip) from the [v1.2.0 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v1.2.0), then install it through Jellyfin’s plugin dashboard.
 
 ## Setup
 
@@ -61,6 +64,7 @@ Open **Dashboard → Plugins → Ends At** to configure server defaults:
 | --- | --- | --- |
 | Show “Ends @” badges | On | Shows the calculated local end time at the bottom of supported posters. Each browser can override this with the **Badges** checkbox. |
 | Include TV series | On | Calculates a series estimate from the median runtime of its available episodes. |
+| Badge time format | Automatic | Choose browser locale, 12-hour AM/PM, or 24-hour display. |
 
 Hard-refresh Jellyfin Web after changing settings so the browser receives the refreshed bundled companion.
 
@@ -70,7 +74,7 @@ Ends At uses Jellyfin's authenticated item API, not filesystem paths or local-me
 
 ## Notes
 
-This is stable release `1.1.0`. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
+This is stable release `1.2.0`. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
 
 ## Development
 
