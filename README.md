@@ -24,7 +24,7 @@ Ends At injects its small, bundled web companion directly into Jellyfin Web at r
 2. Name it `Ends At` and use this repository URL:
 
    ```text
-   https://raw.githubusercontent.com/Joshsnook-05/jellyfin-plugin-ends-at/master/manifest.json
+   https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/raw/refs/heads/master/manifest.json
    ```
 
 3. Save, open the **Catalog** tab, choose **Ends At**, and select **Install**.
