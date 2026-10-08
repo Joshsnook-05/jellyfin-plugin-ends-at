@@ -68,4 +68,4 @@ This is the first stable release, `1.0.0`. The companion targets Jellyfin Web's 
 dotnet build Jellyfin.Plugin.EndsAt.slnx
 ```
 
-The project targets .NET 10 and Jellyfin 12.1.0. It is MIT licensed; see [LICENSE](LICENSE).
+The project targets .NET 10 and Jellyfin 12.1.0. It is licensed under GPL-3.0-or-later; see [LICENSE](LICENSE).
