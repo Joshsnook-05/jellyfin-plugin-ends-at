@@ -64,6 +64,18 @@
         return Array.prototype.slice.call(document.querySelectorAll('.card[data-id]'));
     }
 
+    function isLibraryBrowsePage() {
+        var route = (window.location.hash || window.location.pathname || '').toLowerCase();
+        return /(?:movies|tv|library|folder|search)(?:\.html)?(?:[?&/]|$)/.test(route);
+    }
+
+    function clearPageEnhancements() {
+        var tools = document.querySelector('#ends-at-tools');
+        if (tools) tools.remove();
+        document.querySelectorAll('.ends-at-badge').forEach(function (badge) { badge.remove(); });
+        document.querySelectorAll('.ends-at-hidden').forEach(function (card) { card.classList.remove('ends-at-hidden'); });
+    }
+
     function badgeHost(card) {
         return card.querySelector('.cardScalable') || card.querySelector('.cardBox') || card;
     }
@@ -110,6 +122,10 @@
     }
 
     function refresh() {
+        if (!isLibraryBrowsePage()) {
+            clearPageEnhancements();
+            return;
+        }
         if (busy || !cards().length) return;
         busy = true;
         var ids = cards().map(function (card) { return card.dataset.id; }).filter(Boolean);

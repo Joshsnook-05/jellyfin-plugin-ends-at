@@ -8,11 +8,11 @@
     "category": "General",
     "versions": [
       {
-        "changelog": "First stable release. Places the Ends @ badge inside posters at bottom-left.",
+        "changelog": "Shows Ends At controls only on Jellyfin library-browse and search pages.",
         "targetAbi": "12.1.0.0",
-        "version": "1.0.0.0",
-        "sourceUrl": "https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.0.0/Jellyfin.Plugin.EndsAt_1.0.0.0.zip",
-        "checksum": "7FDC2B86907600DE35D3412232227EAF",
+        "version": "1.0.1.0",
+        "sourceUrl": "https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.0.1/Jellyfin.Plugin.EndsAt_1.0.1.0.zip",
+        "checksum": "091F5D3B22A79B278BB1515C4C6F04EF",
         "timestamp": "2026-10-08T00:00:00"
       }
     ]
