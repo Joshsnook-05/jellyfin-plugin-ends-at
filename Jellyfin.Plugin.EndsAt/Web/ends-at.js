@@ -10,7 +10,7 @@
     var busy = false;
     var style = document.createElement('style');
     style.textContent = [
-        '.ends-at-badge{position:absolute;bottom:.35em;left:.35em;right:.35em;z-index:3;background:rgba(0,0,0,.82);color:#fff;border-radius:.25em;padding:.28em .35em;font-size:.78em;font-weight:600;text-align:center;pointer-events:none;text-shadow:0 1px 2px #000}',
+        '.card .ends-at-badge{position:absolute;z-index:30;top:.55rem;right:.55rem;display:inline-flex;align-items:center;max-width:calc(100% - 1.1rem);padding:.3rem .55rem;border:1px solid rgba(255,255,255,.22);border-radius:999px;color:#fff;background:rgba(9,20,31,.88);box-shadow:0 2px 8px rgba(0,0,0,.38);font-size:.72rem;font-weight:700;letter-spacing:.06em;line-height:1;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}',
         '.ends-at-tools{position:fixed;right:1em;bottom:1em;z-index:1000;display:flex;align-items:center;gap:.45em;background:#202020eF;color:#fff;padding:.65em;border-radius:.5em;box-shadow:0 2px 12px #0008;font-size:.9em}',
         '.ends-at-tools input{color:#fff;background:#333;border:1px solid #666;border-radius:.2em;padding:.25em}',
         '.ends-at-tools button{color:#fff;background:#008cba;border:0;border-radius:.2em;padding:.35em .55em;cursor:pointer}',
@@ -64,6 +64,10 @@
         return Array.prototype.slice.call(document.querySelectorAll('.card[data-id]'));
     }
 
+    function badgeHost(card) {
+        return card.querySelector('.cardScalable') || card.querySelector('.cardBox') || card;
+    }
+
     function applyBadges() {
         var enabled = localStorage.getItem('ends-at-badges');
         enabled = enabled === null ? defaults.badges : enabled === 'true';
@@ -72,7 +76,7 @@
             var duration = cache.get(id);
             var badge = card.querySelector('.ends-at-badge');
             if (!enabled || !duration) { if (badge) badge.remove(); return; }
-            if (!badge) { badge = document.createElement('span'); badge.className = 'ends-at-badge'; card.style.position = 'relative'; card.appendChild(badge); }
+            if (!badge) { badge = document.createElement('span'); badge.className = 'ends-at-badge'; badgeHost(card).appendChild(badge); }
             badge.textContent = formatEnd(duration);
         });
     }

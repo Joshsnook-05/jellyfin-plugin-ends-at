@@ -3,7 +3,7 @@
 **Ends At** helps pick something you can finish before a deadline. In Jellyfin Web it adds:
 
 - an **Ends by** time filter, which hides titles that would finish after the selected local time;
-- an optional **Ends @ HH:MM** badge at the bottom of movie posters; and
+- an optional **Ends @ HH:MM** badge inside movie and series posters; and
 - the same treatment for series, using the median runtime of their available episodes.
 
 The badge is enabled by default and can be disabled globally in the plugin settings or per browser from the floating control.
@@ -34,7 +34,7 @@ The catalog always points to the tested release package, so it is the preferred 
 
 ### Direct download
 
-Alternatively, download [`Jellyfin.Plugin.EndsAt_0.1.1.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v0.1.1/Jellyfin.Plugin.EndsAt_0.1.1.0.zip) from the [v0.1.1 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v0.1.1), then install it through Jellyfin’s plugin dashboard.
+Alternatively, download [`Jellyfin.Plugin.EndsAt_0.1.2.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v0.1.2/Jellyfin.Plugin.EndsAt_0.1.2.0.zip) from the [v0.1.2 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v0.1.2), then install it through Jellyfin’s plugin dashboard.
 
 ## Setup
 
@@ -60,7 +60,7 @@ Ends At uses Jellyfin's authenticated item API, not filesystem paths or local-me
 
 ## Notes
 
-This is `0.1.1`, an intentionally pre-v1 release. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
+This is `0.1.2`, an intentionally pre-v1 release. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
 
 ## Development
 

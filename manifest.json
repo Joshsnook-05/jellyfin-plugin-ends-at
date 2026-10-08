@@ -8,11 +8,11 @@
     "category": "General",
     "versions": [
       {
-        "changelog": "Removes the JavaScript Injector dependency; Ends At now injects its bundled companion directly.",
+        "changelog": "Styles Ends @ badges as an in-poster companion to Remote Library's source badge.",
         "targetAbi": "12.1.0.0",
-        "version": "0.1.1.0",
-        "sourceUrl": "https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v0.1.1/Jellyfin.Plugin.EndsAt_0.1.1.0.zip",
-        "checksum": "304C314B109B8900104BEB53F1E5F55C",
+        "version": "0.1.2.0",
+        "sourceUrl": "https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v0.1.2/Jellyfin.Plugin.EndsAt_0.1.2.0.zip",
+        "checksum": "67C67BB5325D4F28D8905A49F04F760F",
         "timestamp": "2026-10-08T00:00:00"
       }
     ]
