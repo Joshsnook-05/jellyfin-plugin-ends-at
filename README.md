@@ -47,7 +47,7 @@ The catalog always points to the tested release package, so it is the preferred 
 
 ### Direct download
 
-Alternatively, download [`Jellyfin.Plugin.EndsAt_1.2.0.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.2.0/Jellyfin.Plugin.EndsAt_1.2.0.0.zip?catalog=1.2.0.1) from the [v1.2.0 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v1.2.0), then install it through Jellyfin’s plugin dashboard.
+Alternatively, download [`Jellyfin.Plugin.EndsAt_1.2.0.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.2.0/Jellyfin.Plugin.EndsAt_1.2.0.0.zip) from the [v1.2.0 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v1.2.0), then install it through Jellyfin’s plugin dashboard.
 
 ## Setup
 
