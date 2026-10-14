@@ -3,6 +3,7 @@
 <details>
 <summary><strong>Recent changes</strong></summary>
 
+- **1.3.0** — Uses each user's Jellyfin display language for finishing times, controls, progress details, and Rewatch actions.
 - **1.2.0** — Adds remaining-time badges, per-user Rewatch controls, and 12/24-hour badge clock options.
 - **1.1.0** — Added this release history to make updates easier to review.
 - **1.0.2** — Keeps `Ends @` badges on every media-card page while limiting the interactive filter to library browse and search pages.
@@ -19,7 +20,7 @@
 
 When a movie or episode is partly watched, Ends At uses the current user's remaining runtime and adds a concise “time left” detail. Item detail pages include a **Rewatch** action to reset that user's progress.
 
-The badge is enabled by default and can be disabled globally in the plugin settings or per browser from the floating control.
+The badge is enabled by default and can be disabled globally in the plugin settings or per browser from the floating control. Its language and time formatting follow the signed-in user's Jellyfin display language, with English used only when Jellyfin does not provide a translation.
 
 It is designed to work with the [Remote Library plugin](https://github.com/Joshsnook-05/jellyfin-remote-library): remote titles are evaluated through Jellyfin's normal item API, with no local-path requirement.
 
@@ -47,7 +48,7 @@ The catalog always points to the tested release package, so it is the preferred 
 
 ### Direct download
 
-Alternatively, download [`Jellyfin.Plugin.EndsAt_1.2.0.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.2.0/Jellyfin.Plugin.EndsAt_1.2.0.0.zip) from the [v1.2.0 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v1.2.0), then install it through Jellyfin’s plugin dashboard.
+Alternatively, download [`Jellyfin.Plugin.EndsAt_1.3.0.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.3.0/Jellyfin.Plugin.EndsAt_1.3.0.0.zip) from the [v1.3.0 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v1.3.0), then install it through Jellyfin’s plugin dashboard.
 
 ## Setup
 
@@ -74,7 +75,7 @@ Ends At uses Jellyfin's authenticated item API, not filesystem paths or local-me
 
 ## Notes
 
-This is stable release `1.2.0`. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
+This is stable release `1.3.0`. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
 
 ## Development
 

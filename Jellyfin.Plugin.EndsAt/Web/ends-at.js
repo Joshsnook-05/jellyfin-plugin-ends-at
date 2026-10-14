@@ -6,6 +6,7 @@
     window.__endsAtLoaded = true;
 
     var defaults = { badges: __SHOW_POSTER_BADGES__, series: __INCLUDE_SERIES__, timeFormat: '__TIME_FORMAT__' };
+    var translations = __TRANSLATIONS__;
     var cache = new Map();
     var busy = false;
     var style = document.createElement('style');
@@ -23,22 +24,39 @@
         return window.ApiClient && typeof ApiClient.getCurrentUserId === 'function' ? ApiClient.getCurrentUserId() : null;
     }
 
+    function locale() {
+        return String(document.documentElement.lang || navigator.language || 'en-us').replace('_', '-').toLowerCase();
+    }
+
+    function translate(key) {
+        var current = locale();
+        var dictionary = translations[current] || translations[current.split('-')[0]] || {};
+        var fallback = translations['en-us'] || {};
+        var value = dictionary[key] || fallback[key] || key;
+        for (var index = 1; index < arguments.length; index++) {
+            value = value.split('{' + (index - 1) + '}').join(arguments[index]);
+        }
+        return value;
+    }
+
     function formatTime(date) {
         var options = { hour: '2-digit', minute: '2-digit' };
         if (defaults.timeFormat === 'TwelveHour') options.hour12 = true;
         if (defaults.timeFormat === 'TwentyFourHour') options.hour12 = false;
-        return date.toLocaleTimeString([], options);
+        return date.toLocaleTimeString(locale(), options);
     }
 
     function formatEnd(durationTicks) {
         var end = new Date(Date.now() + Number(durationTicks) / 10000);
-        return 'Ends @ ' + formatTime(end);
+        return translate('EndsAtValue', formatTime(end));
     }
 
     function formatDuration(durationTicks) {
         var minutes = Math.max(0, Math.round(Number(durationTicks) / 600000000));
         var hours = Math.floor(minutes / 60);
-        return hours ? hours + 'h ' + (minutes % 60) + 'm' : minutes + 'm';
+        var localizedHours = hours.toLocaleString(locale());
+        var localizedMinutes = (minutes % 60).toLocaleString(locale());
+        return hours ? localizedHours + 'h ' + localizedMinutes + 'm' : minutes.toLocaleString(locale()) + 'm';
     }
 
     function timingFor(item) {
@@ -111,10 +129,10 @@
             var badge = card.querySelector('.ends-at-badge');
             if (!enabled || !timing) { if (badge) badge.remove(); return; }
             if (!badge) { badge = document.createElement('span'); badge.className = 'ends-at-badge'; badgeHost(card).appendChild(badge); }
-            badge.textContent = formatEnd(timing.remaining) + (timing.resumed ? ' · ' + formatDuration(timing.remaining) + ' left' : '');
+            badge.textContent = formatEnd(timing.remaining) + (timing.resumed ? ' · ' + formatDuration(timing.remaining) : '');
             badge.title = timing.resumed
-                ? formatDuration(timing.remaining) + ' remaining. From the beginning: ' + formatEnd(timing.total) + '. Watched: ' + formatDuration(timing.position) + ' of ' + formatDuration(timing.total) + '.'
-                : 'From the beginning: ' + formatDuration(timing.total) + '.';
+                ? formatEnd(timing.remaining) + ' · ' + translate('Watched') + ': ' + formatDuration(timing.position) + ' / ' + formatDuration(timing.total)
+                : formatEnd(timing.total);
         });
     }
 
@@ -132,18 +150,54 @@
     }
 
     function ensureTools() {
-        if (document.querySelector('#ends-at-tools')) return;
-        var tools = document.createElement('div');
-        tools.id = 'ends-at-tools';
-        tools.className = 'ends-at-tools';
-        tools.innerHTML = '<label>Ends by <input id="ends-at-time" type="time"></label><button type="button" id="ends-at-clear">Clear</button><label title="Toggle poster badges"><input id="ends-at-badges" type="checkbox"> Badges</label>';
-        document.body.appendChild(tools);
+        var tools = document.querySelector('#ends-at-tools');
+        if (!tools) {
+            tools = document.createElement('div');
+            tools.id = 'ends-at-tools';
+            tools.className = 'ends-at-tools';
+            var timeLabel = document.createElement('label');
+            timeLabel.className = 'ends-at-time-label';
+            var time = document.createElement('input');
+            time.id = 'ends-at-time';
+            time.type = 'time';
+            timeLabel.appendChild(time);
+            var reset = document.createElement('button');
+            reset.type = 'button';
+            reset.id = 'ends-at-clear';
+            reset.textContent = '↺';
+            var badgeLabel = document.createElement('label');
+            badgeLabel.className = 'ends-at-badges-label';
+            var badgeInput = document.createElement('input');
+            badgeInput.id = 'ends-at-badges';
+            badgeInput.type = 'checkbox';
+            badgeLabel.append(badgeInput, document.createTextNode(' ◷'));
+            tools.append(timeLabel, reset, badgeLabel);
+            document.body.appendChild(tools);
+        }
+        localizeTools(tools);
         var badges = tools.querySelector('#ends-at-badges');
         var saved = localStorage.getItem('ends-at-badges');
         badges.checked = saved === null ? defaults.badges : saved === 'true';
+        if (tools.dataset.ready === 'true') return;
+        tools.dataset.ready = 'true';
         badges.addEventListener('change', function () { localStorage.setItem('ends-at-badges', badges.checked); applyBadges(); });
         tools.querySelector('#ends-at-time').addEventListener('change', applyFilter);
         tools.querySelector('#ends-at-clear').addEventListener('click', function () { tools.querySelector('#ends-at-time').value = ''; cards().forEach(function (card) { card.classList.remove('ends-at-hidden'); }); });
+    }
+
+    function localizeTools(tools) {
+        if (tools.dataset.locale === locale()) return;
+        tools.dataset.locale = locale();
+        var timeLabel = tools.querySelector('.ends-at-time-label');
+        var time = tools.querySelector('#ends-at-time');
+        var template = translate('EndsAtValue', '__ENDS_AT_CONTROL__');
+        var parts = template.split('__ENDS_AT_CONTROL__');
+        timeLabel.replaceChildren(document.createTextNode(parts[0] || ''), time, document.createTextNode(parts.slice(1).join('__ENDS_AT_CONTROL__') || ''));
+        var reset = tools.querySelector('#ends-at-clear');
+        reset.title = translate('Reset');
+        reset.setAttribute('aria-label', translate('Reset'));
+        var badgeLabel = tools.querySelector('.ends-at-badges-label');
+        badgeLabel.title = translate('EndsAtValue', '');
     }
 
     function detailItemId() {
@@ -168,8 +222,7 @@
         return ApiClient.getItem(id, itemId).then(function (item) {
             var recursive = item.Type === 'Series' || item.Type === 'Season' || item.Type === 'BoxSet';
             if (!recursive) return [item.Id];
-            var label = item.Type === 'Series' ? 'all episodes in this series' : item.Type === 'Season' ? 'all episodes in this season' : 'all eligible items in this collection';
-            if (!window.confirm('Reset watch progress for ' + label + '?')) return null;
+            if (!window.confirm(translate('MarkUnplayed') + '?')) return null;
             return getItems({ ParentId: item.Id, Recursive: true, IncludeItemTypes: 'Movie,Episode', Fields: 'UserData', Limit: 10000, EnableTotalRecordCount: false }).then(function (items) { return [item.Id].concat(items.map(function (child) { return child.Id; })); });
         }).then(function (ids) {
             if (!ids) return false;
@@ -186,7 +239,11 @@
         var existing = document.querySelector('#ends-at-rewatch');
         if (!isDetailPage()) { if (existing) existing.remove(); return; }
         var itemId = detailItemId();
-        if (existing && existing.dataset.itemId === itemId) return;
+        if (existing && existing.dataset.itemId === itemId) {
+            existing.title = translate('PlayFromBeginning');
+            existing.setAttribute('aria-label', translate('PlayFromBeginning'));
+            return;
+        }
         if (existing) existing.remove();
         var host = document.querySelector('.detailPagePrimaryContainer') || document.querySelector('.itemDetailPage');
         if (!host) return;
@@ -195,12 +252,12 @@
         button.className = 'ends-at-rewatch';
         button.dataset.itemId = itemId;
         button.type = 'button';
-        button.title = 'Rewatch';
-        button.setAttribute('aria-label', 'Rewatch');
+        button.title = translate('PlayFromBeginning');
+        button.setAttribute('aria-label', translate('PlayFromBeginning'));
         button.textContent = '↶';
         button.addEventListener('click', function () {
             button.disabled = true;
-            resetForRewatch(itemId).then(function (changed) { if (changed) { showToast('Marked as unwatched.'); refresh(); } }).catch(function () { showToast('Could not reset watch progress.'); }).finally(function () { button.disabled = false; });
+            resetForRewatch(itemId).then(function (changed) { if (changed) { showToast(translate('MarkUnplayed')); refresh(); } }).catch(function () { showToast(translate('ErrorDefault')); }).finally(function () { button.disabled = false; });
         });
         host.appendChild(button);
     }
