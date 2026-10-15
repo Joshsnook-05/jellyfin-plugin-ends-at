@@ -81,8 +81,9 @@
     }
 
     function durationFor(item) {
+        if (item.Type === 'Series' && !defaults.series) return Promise.resolve(null);
         if (item.RunTimeTicks) return Promise.resolve(timingFor(item));
-        if (!defaults.series || item.Type !== 'Series') return Promise.resolve(null);
+        if (item.Type !== 'Series') return Promise.resolve(null);
         return getItems({ ParentId: item.Id, Recursive: true, IncludeItemTypes: 'Episode', Fields: 'RunTimeTicks', Limit: 500, EnableTotalRecordCount: false })
             .then(function (episodes) {
                 var runtimes = episodes.map(function (episode) { return Number(episode.RunTimeTicks || 0); }).filter(Boolean);

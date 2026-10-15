@@ -3,6 +3,7 @@
 <details>
 <summary><strong>Recent changes</strong></summary>
 
+- **1.3.1** — Makes the Include TV series setting apply consistently, including to series with a direct Jellyfin runtime.
 - **1.3.0** — Uses each user's Jellyfin display language for finishing times, controls, progress details, and Rewatch actions.
 - **1.2.0** — Adds remaining-time badges, per-user Rewatch controls, and 12/24-hour badge clock options.
 - **1.1.0** — Added this release history to make updates easier to review.
@@ -48,7 +49,7 @@ The catalog always points to the tested release package, so it is the preferred 
 
 ### Direct download
 
-Alternatively, download [`Jellyfin.Plugin.EndsAt_1.3.0.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.3.0/Jellyfin.Plugin.EndsAt_1.3.0.0.zip) from the [v1.3.0 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v1.3.0), then install it through Jellyfin’s plugin dashboard.
+Alternatively, download [`Jellyfin.Plugin.EndsAt_1.3.1.0.zip`](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/download/v1.3.1/Jellyfin.Plugin.EndsAt_1.3.1.0.zip) from the [v1.3.1 release](https://github.com/Joshsnook-05/jellyfin-plugin-ends-at/releases/tag/v1.3.1), then install it through Jellyfin’s plugin dashboard.
 
 ## Setup
 
@@ -64,7 +65,7 @@ Open **Dashboard → Plugins → Ends At** to configure server defaults:
 | Option | Default | Effect |
 | --- | --- | --- |
 | Show “Ends @” badges | On | Shows the calculated local end time at the bottom of supported posters. Each browser can override this with the **Badges** checkbox. |
-| Include TV series | On | Calculates a series estimate from the median runtime of its available episodes. |
+| Include TV series | On | Server-wide setting. Uses a series runtime when available, or estimates it from the median runtime of its available episodes. |
 | Badge time format | Automatic | Choose browser locale, 12-hour AM/PM, or 24-hour display. |
 
 Hard-refresh Jellyfin Web after changing settings so the browser receives the refreshed bundled companion.
@@ -75,7 +76,7 @@ Ends At uses Jellyfin's authenticated item API, not filesystem paths or local-me
 
 ## Notes
 
-This is stable release `1.3.0`. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
+This is stable release `1.3.1`. The companion targets Jellyfin Web's current card markup and is defensive, but client UI changes can require a companion update. The filter evaluates from the current time; a selected time earlier than now is interpreted as tomorrow.
 
 ## Development
 
